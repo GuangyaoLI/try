@@ -30,6 +30,11 @@ char soundpath1[] ="DesiJourney.wav";
 char soundpath2[] ="doublebass.wav";
 char soundpath3[] ="MoodyLoop.wav";
 
+char soundpath4[] ="TheEnd.mp3"; 
+char soundpath5[] ="AroundWorld.mp3";
+char soundpath6[] ="Decision.mp3";
+
+
 
 void ultraInit(void)
 {
@@ -112,21 +117,21 @@ int main(void)
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume1
-			if(dis3>=10 && dis3<20)
+			if(dis3>=10 && dis3<25)
 			{
 				const char* msg = "---";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis3>=20 && dis3<30)
+			/*else if( dis3>=20 && dis3<30)
 			{
 				const char* msg = "p";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis3>=30 &&dis3<40)
+			}*/
+			else if( dis3>=25 &&dis3<40)
 			{
 				const char* msg = "+++";
 				p.send(msg, strlen(msg));
@@ -167,21 +172,21 @@ int main(void)
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume1
-			if(dis3>=10 && dis3<20)
+			if(dis3>=10 && dis3<25)
 			{
 				const char* msg = "---";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis3>=20 && dis3<30)
+			/*else if( dis3>=20 && dis3<30)
 			{
 				const char* msg = "p";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis3>=30 &&dis3<40)
+			}*/
+			else if( dis3>=25 &&dis3<40)
 			{
 				const char* msg = "+++";
 				p.send(msg, strlen(msg));
@@ -223,21 +228,21 @@ int main(void)
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume1
-			if(dis3>=10 && dis3<20)
+			if(dis3>=10 && dis3<25)
 			{
 				const char* msg = "---";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis3>=20 && dis3<30)
+			/*else if( dis3>=20 && dis3<30)
 			{
 				const char* msg = "p";
 				p.send(msg, strlen(msg));
 				auto res = p.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis3>=30 &&dis3<40)
+			}*/
+			else if( dis3>=25 &&dis3<40)
 			{
 				const char* msg = "+++";
 				p.send(msg, strlen(msg));
@@ -275,26 +280,26 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound2
 		if(dis2>=10 && dis2<20)
 		{
-			path2 =soundpath1;
+			path2 =soundpath4;
 			auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume2
-			if(dis4>=10 && dis4<20)
+			if(dis4>=10 && dis4<25)
 			{
 				const char* msg = "---";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis4>=20 && dis4<30)
+			/*else if( dis4>=20 && dis4<30)
 			{
 				const char* msg = "p";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis4>=30 &&dis4<40)
+			}*/
+			else if( dis4>=25 &&dis4<40)
 			{
 				const char* msg = "+++";
 				q.send(msg, strlen(msg));
@@ -330,26 +335,26 @@ int main(void)
 		}
 		else if( dis2>=20 && dis2<30)
 		{
-			path2 =soundpath2;
+			path2 =soundpath5;
 			auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume2
-			if(dis4>=10 && dis4<20)
+			if(dis4>=10 && dis4<25)
 			{
 				const char* msg = "---";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis4>=20 && dis4<30)
+			/*else if( dis4>=20 && dis4<30)
 			{
 				const char* msg = "p";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis4>=30 &&dis4<40)
+			}*/
+			else if( dis4>=25 &&dis4<40)
 			{
 				const char* msg = "+++";
 				q.send(msg, strlen(msg));
@@ -386,26 +391,26 @@ int main(void)
 		}
 		else if( dis2>=30 &&dis2<40)
 		{
-			path2 =soundpath3;
+			path2 =soundpath6;
 			auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
 			flag =1;
 			
 			/////////////////////////////////////////////////////////////////////////////////volume2
-			if(dis4>=10 && dis4<20)
+			if(dis4>=10 && dis4<25)
 			{
 				const char* msg = "---";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
 			}
-			else if( dis4>=20 && dis4<30)
+			/*else if( dis4>=20 && dis4<30)
 			{
 				const char* msg = "p";
 				q.send(msg, strlen(msg));
 				auto res = q.communicate(nullptr, 0);
 				std::cout << res.first.buf.data() << std::endl;
-			}
-			else if( dis4>=30 &&dis4<40)
+			}*/
+			else if( dis4>=25 &&dis4<40)
 			{
 				const char* msg = "+++";
 				q.send(msg, strlen(msg));

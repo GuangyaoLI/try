@@ -97,6 +97,10 @@ int main(void)
 	char *path1;
 	char *path2;
 	
+	const char* msgq = "q";
+	const char* msgh = "+";
+	const char* msgl = "-";
+	
 
 	while(1)
 	{
@@ -130,8 +134,8 @@ int main(void)
 					
 					if(dis1>=20 && dis1<40)
 					{
-						const char* msg = "q";
-						p.send(msg, strlen(msg));
+						//const char* msg = "q";
+						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -139,15 +143,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume1
 					if(dis3>=10 && dis3<25)
 					{
-						const char* msg = "---";
-						p.send(msg, strlen(msg));
+						//const char* msg = "-";
+						p.send(msgl, strlen(msgl));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis3>=25 &&dis3<40)
 					{
-						const char* msg = "+++";
-						p.send(msg, strlen(msg));
+						//const char* msg = "+";
+						p.send(msgh, strlen(msgh));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
@@ -179,8 +183,8 @@ int main(void)
 					
 					if((dis1>=10 && dis1<20)||(dis1>=30 && dis1<40))
 					{
-						const char* msg = "q";
-						p.send(msg, strlen(msg));
+						//const char* msg = "q";
+						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -189,15 +193,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume1
 					if(dis3>=10 && dis3<25)
 					{
-						const char* msg = "---";
-						p.send(msg, strlen(msg));
+						//const char* msg = "---";
+						p.send(msgl, strlen(msgl));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis3>=25 &&dis3<40)
 					{
-						const char* msg = "+++";
-						p.send(msg, strlen(msg));
+						//const char* msg = "+++";
+						p.send(msgh, strlen(msgh));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
@@ -228,8 +232,8 @@ int main(void)
 					
 					if(dis1>=10 && dis1<30)
 					{
-						const char* msg = "q";
-						p.send(msg, strlen(msg));
+						//const char* msg = "q";
+						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -237,15 +241,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume1
 					if(dis3>=10 && dis3<25)
 					{
-						const char* msg = "---";
-						p.send(msg, strlen(msg));
+						//const char* msg = "---";
+						p.send(msgl, strlen(msgl));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis3>=25 &&dis3<40)
 					{
-						const char* msg = "+++";
-						p.send(msg, strlen(msg));
+						//const char* msg = "+++";
+						p.send(msgh, strlen(msgh));
 						auto res = p.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
@@ -268,23 +272,6 @@ int main(void)
 				auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
 				flag =1;
 			
-			/////////////////////////////////////////////////////////////////////////////////volume2
-				if(dis4>=10 && dis4<25)
-				{
-					const char* msg = "---";
-					q.send(msg, strlen(msg));
-					auto res = q.communicate(nullptr, 0);
-					std::cout << res.first.buf.data() << std::endl;
-				}
-				else if( dis4>=25 &&dis4<40)
-				{
-					const char* msg = "+++";
-					q.send(msg, strlen(msg));
-					auto res = q.communicate(nullptr, 0);
-					std::cout << res.first.buf.data() << std::endl;
-				}
-			/////////////////////////////////////////////////////////////////////////////////////////
-			
 				while(flag)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
@@ -294,8 +281,8 @@ int main(void)
 					
 					if(dis2>=20 && dis2<40)
 					{
-						const char* msg = "q";
-						q.send(msg, strlen(msg));
+						//const char* msg = "q";
+						q.send(msgq, strlen(msgq));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -304,15 +291,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume2
 					if(dis4>=10 && dis4<25)
 					{
-						const char* msg = "---";
-						q.send(msg, strlen(msg));
+						//const char* msg = "---";
+						q.send(msgl, strlen(msgl));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis4>=25 &&dis4<40)
 					{
-						const char* msg = "+++";
-						q.send(msg, strlen(msg));
+						//const char* msg = "+++";
+						q.send(msgh, strlen(msgh));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
@@ -343,8 +330,8 @@ int main(void)
 					
 					if((dis2>=10 && dis2<20)||(dis2>=30 && dis2<40))
 					{
-						const char* msg = "q";
-						q.send(msg, strlen(msg));
+						//const char* msg = "q";
+						q.send(msgq, strlen(msgq));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -352,15 +339,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume2
 					if(dis4>=10 && dis4<25)
 					{
-						const char* msg = "---";
-						q.send(msg, strlen(msg));
+						//const char* msg = "---";
+						q.send(msgl, strlen(msgl));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis4>=25 &&dis4<40)
 					{
-						const char* msg = "+++";
-						q.send(msg, strlen(msg));
+						//const char* msg = "+++";
+						q.send(msgh, strlen(msgh));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
@@ -391,8 +378,8 @@ int main(void)
 					
 					if(dis2>=10 && dis2<30)
 					{
-						const char* msg = "q";
-						q.send(msg, strlen(msg));
+						//const char* msg = "q";
+						q.send(msgq, strlen(msgq));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
@@ -400,15 +387,15 @@ int main(void)
 					/////////////////////////////////////////////////////////////////////////////////volume2
 					if(dis4>=10 && dis4<25)
 					{
-						const char* msg = "---";
-						q.send(msg, strlen(msg));
+						//const char* msg = "---";
+						q.send(msgl, strlen(msgl));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}
 					else if( dis4>=25 &&dis4<40)
 					{
-						const char* msg = "+++";
-						q.send(msg, strlen(msg));
+						//const char* msg = "+++";
+						q.send(msgh, strlen(msgh));
 						auto res = q.communicate(nullptr, 0);
 						std::cout << res.first.buf.data() << std::endl;
 					}

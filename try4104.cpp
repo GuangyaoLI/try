@@ -97,11 +97,8 @@ int main(void)
 	char *path1;
 	char *path2;
 	
-	const char* msgq = "q";
-	const char* msgh = "+";
-	const char* msgl = "-";
+	char *volume;
 	
-
 	while(1)
 	{
 		dis1 = disMeasure(Trig1,Echo1);
@@ -116,30 +113,26 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(dis1>=10 && dis1<20)
 		{
-			pid=fork();
-			if(pid==0)
+			path1 =soundpath1;
+			auto p=Popen({"omxplayer","-o","local","--vol",volume,path1},output{PIPE},input{PIPE});
+			flag =1;
+			
+			while(flag)
 			{
-				close(0);
-				
-				path1 =soundpath1;
-				auto p=Popen({"omxplayer","-o","local",path1},output{PIPE},input{PIPE});
-				flag =1;
+				dis1 = disMeasure(Trig1,Echo1);
+				dis3 = disMeasure(Trig3,Echo3);
+				cout << "distance1 = " << dis1 << " cm." << endl;
+				cout << "distance3 = " << dis3 << " cm." << endl;
+				delay(1000);
 
-				while(flag)
+				if(dis1>=20 && dis1<40)
 				{
-					dis1 = disMeasure(Trig1,Echo1);
-					//printf("distance = %0.2f cm\n",dis1);
-					cout << "distance1 = " << dis1 << " cm." << endl;
-					delay(1000);
-					
-					if(dis1>=20 && dis1<40)
-					{
-						//const char* msg = "q";
-						p.send(msgq, strlen(msgq));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-						flag =0;
-					}
+					const char* msg = "q";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+					flag =0;
+				}
 					/////////////////////////////////////////////////////////////////////////////////volume1
 					if(dis3>=10 && dis3<25)
 					{

@@ -115,16 +115,19 @@ int main(void)
 	volume2 =vol0;
 	float volf1, volf2;
 	
-	int start =2;
+	//int start =2;
 	//////Initial music
 		path1 =soundpath1;
 		path2 =soundpath4;
 		auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
 		auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 	
-	start = start-1;
+	//auto fi1 = p.poll();
+	//auto fi2 = q.poll();
 	
-	while(start)
+	//start = start-1;
+	
+	while(1)
 	{
 		dis1 = disMeasure(Trig1,Echo1);
 		cout << "distance1 = " << dis1 << " cm." << endl;
@@ -140,6 +143,7 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(dis1>=10 && dis1<20)
 		{
+			if(p.poll()==-1){
 			path1 =soundpath1;
 			song1 = song1 +1;
 			if(song1==1)
@@ -150,10 +154,11 @@ int main(void)
 				song2=0; song3=0;
 				
 				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}
+			}}
 		}
 		else if( dis1>=20 && dis1<30)
 		{
+			if(p.poll()==-1){
 			path1 =soundpath2;
 			song2 = song2 +1;
 			if(song2==1)
@@ -164,11 +169,12 @@ int main(void)
 				song1=0; song3=0;
 				
 				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}
+			}}
 			
 		}
 		else if( dis1>=30 &&dis1<40)
 		{
+			if(p.poll()==-1){
 			path1 =soundpath3;
 			song3 = song3 +1;
 			if(song3==1)
@@ -179,13 +185,14 @@ int main(void)
 				song1=0; song2=0;
 				
 				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}
+			}}
 
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////sound2
 		if(dis2>=10 && dis2<20)
 		{
+			if(q.poll()==-1){
 			path2 =soundpath4;
 			song4 = song4 +1;
 			if(song4==1)
@@ -196,11 +203,12 @@ int main(void)
 				song5=0; song6=0;
 				
 				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}
+			}}
 
 		}
 		else if( dis2>=20 && dis2<30)
 		{
+			if(q.poll()==-1){
 			path2 =soundpath5;
 			song5 = song5 +1;
 			if(song5==1)
@@ -211,10 +219,11 @@ int main(void)
 				song4=0; song6=0;
 				
 				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}
+			}}
 		}
 		else if( dis2>=30 &&dis2<40)
 		{
+			if(q.poll()==-1){
 			path2 =soundpath6;
 			song6 = song6 +1;
 			if(song6==1)
@@ -225,11 +234,12 @@ int main(void)
 				song4=0; song5=0;
 				
 				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}
+			}}
 		}
 		/////////////////////////////////////////////////////////////////////////////////volume1
 		if(dis3>=5 && dis3<=35)
 		{
+			if(p.poll()==-1){
 			p.send(msgq, strlen(msgq));
 			auto res = p.communicate(nullptr, 0);
 			std::cout << res.first.buf.data() << std::endl;
@@ -239,11 +249,12 @@ int main(void)
 			volume1 =vol1;
 			song1 =0; song2 =0; song3 =0;
 			
-			auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
+			auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});}
 		}
 		/////////////////////////////////////////////////////////////////////////////////volume2
 		if(dis4>=5 && dis4<=35)
 		{
+			if(q.poll()==-1){
 			q.send(msgq, strlen(msgq));
 			auto res = q.communicate(nullptr, 0);
 			std::cout << res.first.buf.data() << std::endl;
@@ -253,7 +264,7 @@ int main(void)
 			volume2 =vol2;
 			song4 =0; song5 =0; song6 =0;
 			
-			auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
+			auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});}
 		}
 		delay(1000);
 	}

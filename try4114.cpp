@@ -115,13 +115,16 @@ int main(void)
 	volume2 =vol0;
 	float volf1, volf2;
 	
+	int start =2;
 	//////Initial music
 		path1 =soundpath1;
 		path2 =soundpath4;
 		auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
 		auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 	
-	while(1)
+	start = start-1;
+	
+	while(start)
 	{
 		dis1 = disMeasure(Trig1,Echo1);
 		cout << "distance1 = " << dis1 << " cm." << endl;

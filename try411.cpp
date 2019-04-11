@@ -34,6 +34,9 @@ char soundpath4[] ="TheEnd.mp3";
 char soundpath5[] ="AroundWorld.mp3";
 char soundpath6[] ="Decision.mp3";
 
+char vol1[] ="0";
+char vol2[6];
+
 
 
 void ultraInit(void)
@@ -97,7 +100,11 @@ int main(void)
 	char *path1;
 	char *path2;
 	
+	const char* msg = "q";
+	
 	char *volume;
+	volume =vol1;
+	float vol;
 	
 	while(1)
 	{
@@ -113,8 +120,13 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(dis1>=10 && dis1<20)
 		{
+			kill(pid,9);
+			pid=fork();
+			if(pid==0)
+			{
+				close(0);
 			path1 =soundpath1;
-			auto p=Popen({"omxplayer","-o","local","--vol",volume,path1},output{PIPE},input{PIPE});
+			auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 			flag =1;
 			
 			while(flag)
@@ -127,51 +139,48 @@ int main(void)
 
 				if(dis1>=20 && dis1<40)
 				{
-					const char* msg = "q";
+					//const char* msg = "q";
 					p.send(msgq, strlen(msgq));
 					auto res = p.communicate(nullptr, 0);
 					std::cout << res.first.buf.data() << std::endl;
 					flag =0;
 				}
-					/////////////////////////////////////////////////////////////////////////////////volume1
-					if(dis3>=10 && dis3<25)
-					{
-						//const char* msg = "-";
-						p.send(msgl, strlen(msgl));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis3>=25 &&dis3<40)
-					{
-						//const char* msg = "+";
-						p.send(msgh, strlen(msgh));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
-					
-					
+				/////////////////////////////////////////////////////////////////////////////////volume1
+				if(dis3>=5 && dis3<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis3 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
 				}
+				//////////////////////////////////////////////////////////////////////////////////////		
+			}
 				perror("error");
 				exit(0);
 			}
 		}
 		else if( dis1>=20 && dis1<30)
 		{
+			kill(pid,9);
 			pid=fork();
 			if(pid==0)
 			{
 				close(0);
 				path1 =soundpath2;
-				auto p=Popen({"omxplayer","-o","local",path1},output{PIPE},input{PIPE});
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 				flag =1;
 			
 				while(flag)
 				{
 					dis1 = disMeasure(Trig1,Echo1);
-					//dis = disMeasure();
-					//printf("distance = %0.2f cm\n",dis);
+					dis3 = disMeasure(Trig3,Echo3);
 					cout << "distance1 = " << dis1 << " cm." << endl;
+					cout << "distance3 = " << dis3 << " cm." << endl;
 					delay(1000);
 					
 					if((dis1>=10 && dis1<20)||(dis1>=30 && dis1<40))
@@ -183,23 +192,20 @@ int main(void)
 						flag =0;
 					}
 					
-					/////////////////////////////////////////////////////////////////////////////////volume1
-					if(dis3>=10 && dis3<25)
-					{
-						//const char* msg = "---";
-						p.send(msgl, strlen(msgl));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis3>=25 &&dis3<40)
-					{
-						//const char* msg = "+++";
-						p.send(msgh, strlen(msgh));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
-					
+				/////////////////////////////////////////////////////////////////////////////////volume1
+				if(dis3>=5 && dis3<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis3 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
+				}
+				//////////////////////////////////////////////////////////////////////////////////////	
 				}
 				perror("error");
 				exit(0);
@@ -207,20 +213,21 @@ int main(void)
 		}
 		else if( dis1>=30 &&dis1<40)
 		{
+			kill(pid,9);
 			pid=fork();
 			if(pid==0)
 			{
 				close(0);
 				path1 =soundpath3;
-				auto p=Popen({"omxplayer","-o","local",path1},output{PIPE},input{PIPE});
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 				flag =1;
 
 				while(flag)
 				{
 					dis1 = disMeasure(Trig1,Echo1);
-					//dis = disMeasure();
-					//printf("distance = %0.2f cm\n",dis);
+					dis3 = disMeasure(Trig3,Echo3);
 					cout << "distance1 = " << dis1 << " cm." << endl;
+					cout << "distance3 = " << dis3 << " cm." << endl;
 					delay(1000);
 					
 					if(dis1>=10 && dis1<30)
@@ -231,22 +238,20 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					/////////////////////////////////////////////////////////////////////////////////volume1
-					if(dis3>=10 && dis3<25)
-					{
-						//const char* msg = "---";
-						p.send(msgl, strlen(msgl));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis3>=25 &&dis3<40)
-					{
-						//const char* msg = "+++";
-						p.send(msgh, strlen(msgh));
-						auto res = p.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
+				/////////////////////////////////////////////////////////////////////////////////volume1
+				if(dis3>=5 && dis3<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis3 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
+				}
+				//////////////////////////////////////////////////////////////////////////////////////
 				
 				}
 				perror("error");
@@ -257,19 +262,21 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound2
 		if(dis2>=10 && dis2<20)
 		{
+			kill(pid,9);
 			pid=fork();
 			if(pid==0)
 			{
 				close(0);
 				path2 =soundpath4;
-				auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 				flag =1;
 			
 				while(flag)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
-					//printf("distance = %0.2f cm\n",dis1);
+					dis4 = disMeasure(Trig4,Echo4);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if(dis2>=20 && dis2<40)
@@ -281,22 +288,20 @@ int main(void)
 						flag =0;
 					}
 					
-					/////////////////////////////////////////////////////////////////////////////////volume2
-					if(dis4>=10 && dis4<25)
-					{
-						//const char* msg = "---";
-						q.send(msgl, strlen(msgl));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis4>=25 &&dis4<40)
-					{
-						//const char* msg = "+++";
-						q.send(msgh, strlen(msgh));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
+				/////////////////////////////////////////////////////////////////////////////////volume2
+				if(dis4>=5 && dis4<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis4 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
+				}
+				//////////////////////////////////////////////////////////////////////////////////////
 					
 				}
 				perror("error");
@@ -305,20 +310,21 @@ int main(void)
 		}
 		else if( dis2>=20 && dis2<30)
 		{
+			kill(pid,9);
 			pid=fork();
 			if(pid==0)
 			{
 				close(0);
 				path2 =soundpath5;
-				auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 				flag =1;
 			
 				while(flag)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
-					//dis = disMeasure();
-					//printf("distance = %0.2f cm\n",dis);
+					dis4 = disMeasure(Trig4,Echo4);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if((dis2>=10 && dis2<20)||(dis2>=30 && dis2<40))
@@ -329,22 +335,20 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					/////////////////////////////////////////////////////////////////////////////////volume2
-					if(dis4>=10 && dis4<25)
-					{
-						//const char* msg = "---";
-						q.send(msgl, strlen(msgl));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis4>=25 &&dis4<40)
-					{
-						//const char* msg = "+++";
-						q.send(msgh, strlen(msgh));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
+				/////////////////////////////////////////////////////////////////////////////////volume2
+				if(dis4>=5 && dis4<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis4 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
+				}
+				//////////////////////////////////////////////////////////////////////////////////////
 					
 				}
 				perror("error");
@@ -353,20 +357,21 @@ int main(void)
 		}
 		else if( dis2>=30 &&dis2<40)
 		{
+			kill(pid,9);
 			pid=fork();
 			if(pid==0)
 			{
 				close(0);
 				path2 =soundpath6;
-				auto q=Popen({"omxplayer","-o","local",path2},output{PIPE},input{PIPE});
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume,path1},output{PIPE},input{PIPE});
 				flag =1;
 			
 				while(flag)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
-					//dis = disMeasure();
-					//printf("distance = %0.2f cm\n",dis);
+					dis4 = disMeasure(Trig4,Echo4);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if(dis2>=10 && dis2<30)
@@ -377,22 +382,20 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					/////////////////////////////////////////////////////////////////////////////////volume2
-					if(dis4>=10 && dis4<25)
-					{
-						//const char* msg = "---";
-						q.send(msgl, strlen(msgl));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					else if( dis4>=25 &&dis4<40)
-					{
-						//const char* msg = "+++";
-						q.send(msgh, strlen(msgh));
-						auto res = q.communicate(nullptr, 0);
-						std::cout << res.first.buf.data() << std::endl;
-					}
-					//////////////////////////////////////////////////////////////////////////////////////
+				/////////////////////////////////////////////////////////////////////////////////volume2
+				if(dis4>=5 && dis4<=35)
+				{
+					//const char* msg = "-";
+					p.send(msgq, strlen(msgq));
+					auto res = p.communicate(nullptr, 0);
+					std::cout << res.first.buf.data() << std::endl;
+						
+					vol = 111*(dis4 -5)-3000;
+					sprintf(vol2,"%.0f",vol);
+					volume =vol2;
+					flag=0;
+				}
+				//////////////////////////////////////////////////////////////////////////////////////
 				
 				}
 				perror("error");

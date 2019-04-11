@@ -148,13 +148,15 @@ int main(void)
 			song1 = song1 +1;
 			if(song1==1)
 			{
+				if(p.poll()==-1){
 				p.send(msgq, strlen(msgq));
 				auto res = p.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song2=0; song3=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}}
+				if(p.poll()==0){
+				song2=0; song3=0;
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});}
+			}
 		}
 		else if( dis1>=20 && dis1<30)
 		{
@@ -163,13 +165,15 @@ int main(void)
 			song2 = song2 +1;
 			if(song2==1)
 			{
+				if(p.poll()==-1){
 				p.send(msgq, strlen(msgq));
 				auto res = p.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song1=0; song3=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}}
+				if(p.poll()==0){
+				song1=0; song3=0;
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});}
+			}
 			
 		}
 		else if( dis1>=30 &&dis1<40)
@@ -179,13 +183,15 @@ int main(void)
 			song3 = song3 +1;
 			if(song3==1)
 			{
+				if(p.poll()==-1){
 				p.send(msgq, strlen(msgq));
 				auto res = p.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song1=0; song2=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-			}}
+				if(p.poll()==0){	
+				song1=0; song2=0;
+				auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});}
+			}
 
 		}
 		
@@ -197,13 +203,15 @@ int main(void)
 			song4 = song4 +1;
 			if(song4==1)
 			{
+				if(q.poll()==-1){
 				q.send(msgq, strlen(msgq));
 				auto res = q.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song5=0; song6=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}}
+				if(q.poll()==0){
+				song5=0; song6=0;
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});}
+			}
 
 		}
 		else if( dis2>=20 && dis2<30)
@@ -213,28 +221,31 @@ int main(void)
 			song5 = song5 +1;
 			if(song5==1)
 			{
+				if(q.poll()==-1){
 				q.send(msgq, strlen(msgq));
 				auto res = q.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song4=0; song6=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}}
+				if(q.poll()==0){
+				song4=0; song6=0;
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});}
+			}
 		}
 		else if( dis2>=30 &&dis2<40)
 		{
-			if(q.poll()==-1){
 			path2 =soundpath6;
 			song6 = song6 +1;
 			if(song6==1)
 			{
+				if(q.poll()==-1){
 				q.send(msgq, strlen(msgq));
 				auto res = q.communicate(nullptr, 0);
-				std::cout << res.first.buf.data() << std::endl;
-				song4=0; song5=0;
+				std::cout << res.first.buf.data() << std::endl;}
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
-			}}
+				if(p.poll()==0){
+				song4=0; song5=0;
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});}
+			}
 		}
 		/////////////////////////////////////////////////////////////////////////////////volume1
 		if(dis3>=5 && dis3<=35)
@@ -242,8 +253,9 @@ int main(void)
 			if(p.poll()==-1){
 			p.send(msgq, strlen(msgq));
 			auto res = p.communicate(nullptr, 0);
-			std::cout << res.first.buf.data() << std::endl;
-						
+			std::cout << res.first.buf.data() << std::endl;}
+			
+			if(p.poll()==0){			
 			volf1 = 111*(dis3 -5)-3000;
 			sprintf(vol1,"%.0f",volf1);
 			volume1 =vol1;
@@ -257,8 +269,9 @@ int main(void)
 			if(q.poll()==-1){
 			q.send(msgq, strlen(msgq));
 			auto res = q.communicate(nullptr, 0);
-			std::cout << res.first.buf.data() << std::endl;
-						
+			std::cout << res.first.buf.data() << std::endl;}
+			
+			if(q.poll()==0){
 			volf2 = 111*(dis4 -5)-3000;
 			sprintf(vol2,"%.0f",volf2);
 			volume2 =vol2;

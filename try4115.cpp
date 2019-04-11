@@ -143,7 +143,6 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(dis1>=10 && dis1<20)
 		{
-			if(p.poll()==-1){
 			path1 =soundpath1;
 			song1 = song1 +1;
 			if(song1==1)
@@ -160,7 +159,6 @@ int main(void)
 		}
 		else if( dis1>=20 && dis1<30)
 		{
-			if(p.poll()==-1){
 			path1 =soundpath2;
 			song2 = song2 +1;
 			if(song2==1)
@@ -178,7 +176,6 @@ int main(void)
 		}
 		else if( dis1>=30 &&dis1<40)
 		{
-			if(p.poll()==-1){
 			path1 =soundpath3;
 			song3 = song3 +1;
 			if(song3==1)
@@ -198,7 +195,6 @@ int main(void)
 		/////////////////////////////////////////////////////////////////////////////////sound2
 		if(dis2>=10 && dis2<20)
 		{
-			if(q.poll()==-1){
 			path2 =soundpath4;
 			song4 = song4 +1;
 			if(song4==1)
@@ -216,7 +212,6 @@ int main(void)
 		}
 		else if( dis2>=20 && dis2<30)
 		{
-			if(q.poll()==-1){
 			path2 =soundpath5;
 			song5 = song5 +1;
 			if(song5==1)

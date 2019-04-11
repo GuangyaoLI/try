@@ -115,6 +115,12 @@ int main(void)
 	volume2 =vol0;
 	float volf1, volf2;
 	
+	//////Initial music
+		path1 =soundpath1;
+		path2 =soundpath4;
+		auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
+		auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
+	
 	while(1)
 	{
 		dis1 = disMeasure(Trig1,Echo1);
@@ -126,11 +132,6 @@ int main(void)
 		dis4 = disMeasure(Trig4,Echo4);
 		cout << "distance4 = " << dis4 << " cm." << endl;
 		
-		//////Initial music
-		path1 =soundpath1;
-		path2 =soundpath4;
-		auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
-		auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 		
 		
 		/////////////////////////////////////////////////////////////////////////////////sound1
@@ -191,7 +192,7 @@ int main(void)
 				std::cout << res.first.buf.data() << std::endl;
 				song5=0; song6=0;
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path1},output{PIPE},input{PIPE});
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 			}
 
 		}
@@ -206,7 +207,7 @@ int main(void)
 				std::cout << res.first.buf.data() << std::endl;
 				song4=0; song6=0;
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path1},output{PIPE},input{PIPE});
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 			}
 		}
 		else if( dis2>=30 &&dis2<40)
@@ -220,7 +221,7 @@ int main(void)
 				std::cout << res.first.buf.data() << std::endl;
 				song4=0; song5=0;
 				
-				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path1},output{PIPE},input{PIPE});
+				auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 			}
 		}
 		/////////////////////////////////////////////////////////////////////////////////volume1
@@ -234,6 +235,8 @@ int main(void)
 			sprintf(vol1,"%.0f",volf1);
 			volume1 =vol1;
 			song1 =0; song2 =0; song3 =0;
+			
+			auto p=Popen({"omxplayer","-o","local","--loop","--vol",volume1,path1},output{PIPE},input{PIPE});
 		}
 		/////////////////////////////////////////////////////////////////////////////////volume2
 		if(dis4>=5 && dis4<=35)
@@ -246,6 +249,8 @@ int main(void)
 			sprintf(vol2,"%.0f",volf2);
 			volume2 =vol2;
 			song4 =0; song5 =0; song6 =0;
+			
+			auto q=Popen({"omxplayer","-o","local","--loop","--vol",volume2,path2},output{PIPE},input{PIPE});
 		}
 		delay(1000);
 	}

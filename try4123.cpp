@@ -287,7 +287,7 @@ int main(void)
 						flag =0;
 					}
 				}
-		}delay(1000);
+		}delay(1000);}
 		perror("error");
 		exit(0);
 		}

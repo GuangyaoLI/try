@@ -109,14 +109,14 @@ int main(void)
 	
 	while(1)
 	{
-		dis1 = disMeasure(Trig1,Echo1);
+		/*dis1 = disMeasure(Trig1,Echo1);
 		cout << "distance1 = " << dis1 << " cm." << endl;
 		dis2 = disMeasure(Trig2,Echo2);
 		cout << "distance2 = " << dis2 << " cm." << endl;
 		dis3 = disMeasure(Trig3,Echo3);
 		cout << "distance3 = " << dis3 << " cm." << endl;
 		dis4 = disMeasure(Trig4,Echo4);
-		cout << "distance4 = " << dis4 << " cm." << endl;
+		cout << "distance4 = " << dis4 << " cm." << endl;*/
 		
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(p.poll()==0 && sub1==0)
@@ -126,7 +126,7 @@ int main(void)
 		if(pid==0)
 		{
 			close(0);
-			
+			while(1){
 			dis1 = disMeasure(Trig1,Echo1);
 			cout << "distance1 = " << dis1 << " cm." << endl;
 			
@@ -196,7 +196,7 @@ int main(void)
 						flag =0;
 					}
 				}
-		}
+		}delay(1000);}
 		perror("error");
 		exit(0);
 		}
@@ -210,7 +210,7 @@ int main(void)
 			if(pid==0)
 			{
 				close(0);
-				
+				while(1){
 				dis2 = disMeasure(Trig2,Echo2);
 				cout << "distance2 = " << dis2 << " cm." << endl;
 				
@@ -280,7 +280,7 @@ int main(void)
 						flag =0;
 					}
 				}
-		}
+		}delay(1000);
 		perror("error");
 		exit(0);
 		}

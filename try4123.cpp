@@ -140,6 +140,8 @@ int main(void)
 				{
 					dis1 = disMeasure(Trig1,Echo1);
 					cout << "distance1 = " << dis1 << " cm." << endl;
+					dis3 = disMeasure(Trig3,Echo3);
+					cout << "distance3 = " << dis3 << " cm." << endl;
 					delay(1000);
 					
 					if(dis1>=20 && dis1<40)
@@ -147,9 +149,14 @@ int main(void)
 						//const char* msg = "q";
 						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
-						//std::cout << res.first.buf.data() << std::endl;
+						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
-					}		
+					}
+					if(dis3>5 && dis3<20)
+					{
+						const char* msg = "2";
+						p.send(msg, strlen(msg));
+					}
 				}
 			}
 		else if( dis1>=20 && dis1<30)

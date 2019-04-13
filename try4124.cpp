@@ -100,8 +100,10 @@ int main(void)
 	char *path2;
 	
 	const char* msgq = "q";
-	//const char* msgh = "+";
-	//const char* msgl = "-";
+	const char* msgh = "+";
+	const char* msgl = "-";
+	const char* msgs = "1";
+	const char* msgf = "2";
 	
 	//////Initial music
 		auto p=Popen({"omxplayer","-o","local","dingdong.mp3"},output{PIPE},input{PIPE});
@@ -152,10 +154,25 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis3>5 && dis3<20)
+					if(dis3>=5 && dis3<10)
 					{
-						const char* msg = "2";
-						p.send(msg, strlen(msg));
+						//const char* msg = "1";
+						p.send(msgs, strlen(msgs));
+					}
+					else if(dis3>=10 && dis3<15)
+					{
+						//const char* msg = "2";
+						p.send(msgf, strlen(msgf));
+					}
+					else if(dis3>=15 && dis3<20)
+					{
+						//const char* msg = "-";
+						p.send(msgl, strlen(msgl));
+					}
+					else if(dis3>=20 && dis3<25)
+					{
+						//const char* msg = "+";
+						p.send(msgh, strlen(msgh));
 					}
 				}
 			}
@@ -169,6 +186,8 @@ int main(void)
 				{
 					dis1 = disMeasure(Trig1,Echo1);
 					cout << "distance1 = " << dis1 << " cm." << endl;
+					dis3 = disMeasure(Trig3,Echo3);
+					cout << "distance3 = " << dis3 << " cm." << endl;
 					delay(1000);
 					
 					if((dis1>=10 && dis1<20)||(dis1>=30 && dis1<40))
@@ -176,9 +195,29 @@ int main(void)
 						//const char* msg = "q";
 						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
-						//std::cout << res.first.buf.data() << std::endl;
+						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
-					}	
+					}
+					if(dis3>=5 && dis3<10)
+					{
+						//const char* msg = "1";
+						p.send(msgs, strlen(msgs));
+					}
+					else if(dis3>=10 && dis3<15)
+					{
+						//const char* msg = "2";
+						p.send(msgf, strlen(msgf));
+					}
+					else if(dis3>=15 && dis3<20)
+					{
+						//const char* msg = "-";
+						p.send(msgl, strlen(msgl));
+					}
+					else if(dis3>=20 && dis3<25)
+					{
+						//const char* msg = "+";
+						p.send(msgh, strlen(msgh));
+					}
 				}
 
 		}
@@ -192,6 +231,8 @@ int main(void)
 				{
 					dis1 = disMeasure(Trig1,Echo1);
 					cout << "distance1 = " << dis1 << " cm." << endl;
+					dis3 = disMeasure(Trig3,Echo3);
+					cout << "distance3 = " << dis3 << " cm." << endl;
 					delay(1000);
 					
 					if(dis1>=10 && dis1<30)
@@ -199,8 +240,28 @@ int main(void)
 						//const char* msg = "q";
 						p.send(msgq, strlen(msgq));
 						auto res = p.communicate(nullptr, 0);
-						//std::cout << res.first.buf.data() << std::endl;
+						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
+					}
+					if(dis3>=5 && dis3<10)
+					{
+						//const char* msg = "1";
+						p.send(msgs, strlen(msgs));
+					}
+					else if(dis3>=10 && dis3<15)
+					{
+						//const char* msg = "2";
+						p.send(msgf, strlen(msgf));
+					}
+					else if(dis3>=15 && dis3<20)
+					{
+						//const char* msg = "-";
+						p.send(msgl, strlen(msgl));
+					}
+					else if(dis3>=20 && dis3<25)
+					{
+						//const char* msg = "+";
+						p.send(msgh, strlen(msgh));
 					}
 				}
 		}delay(1000);}
@@ -232,6 +293,8 @@ int main(void)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					dis4 = disMeasure(Trig4,Echo4);
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if(dis2>=20 && dis2<40)
@@ -241,6 +304,26 @@ int main(void)
 						auto res = q.communicate(nullptr, 0);
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
+					}
+					if(dis4>=5 && dis4<10)
+					{
+						//const char* msg = "1";
+						q.send(msgs, strlen(msgs));
+					}
+					else if(dis4>=10 && dis4<15)
+					{
+						//const char* msg = "2";
+						q.send(msgf, strlen(msgf));
+					}
+					else if(dis4>=15 && dis4<20)
+					{
+						//const char* msg = "-";
+						q.send(msgl, strlen(msgl));
+					}
+					else if(dis4>=20 && dis4<25)
+					{
+						//const char* msg = "+";
+						q.send(msgh, strlen(msgh));
 					}
 				}
 		}
@@ -254,6 +337,8 @@ int main(void)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					dis4 = disMeasure(Trig4,Echo4);
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if((dis2>=10 && dis2<20)||(dis2>=30 && dis2<40))
@@ -263,7 +348,27 @@ int main(void)
 						auto res = q.communicate(nullptr, 0);
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
-					}	
+					}
+					if(dis4>=5 && dis4<10)
+					{
+						//const char* msg = "1";
+						q.send(msgs, strlen(msgs));
+					}
+					else if(dis4>=10 && dis4<15)
+					{
+						//const char* msg = "2";
+						q.send(msgf, strlen(msgf));
+					}
+					else if(dis4>=15 && dis4<20)
+					{
+						//const char* msg = "-";
+						q.send(msgl, strlen(msgl));
+					}
+					else if(dis4>=20 && dis4<25)
+					{
+						//const char* msg = "+";
+						q.send(msgh, strlen(msgh));
+					}
 				}
 		}
 		else if( dis2>=30 &&dis2<40)
@@ -276,6 +381,8 @@ int main(void)
 				{
 					dis2 = disMeasure(Trig2,Echo2);
 					cout << "distance2 = " << dis2 << " cm." << endl;
+					dis4 = disMeasure(Trig4,Echo4);
+					cout << "distance4 = " << dis4 << " cm." << endl;
 					delay(1000);
 					
 					if(dis2>=10 && dis2<30)
@@ -285,6 +392,26 @@ int main(void)
 						auto res = q.communicate(nullptr, 0);
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
+					}
+					if(dis4>=5 && dis4<10)
+					{
+						//const char* msg = "1";
+						q.send(msgs, strlen(msgs));
+					}
+					else if(dis4>=10 && dis4<15)
+					{
+						//const char* msg = "2";
+						q.send(msgf, strlen(msgf));
+					}
+					else if(dis4>=15 && dis4<20)
+					{
+						//const char* msg = "-";
+						q.send(msgl, strlen(msgl));
+					}
+					else if(dis4>=20 && dis4<25)
+					{
+						//const char* msg = "+";
+						q.send(msgh, strlen(msgh));
 					}
 				}
 		}delay(1000);}

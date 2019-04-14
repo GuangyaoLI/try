@@ -106,20 +106,31 @@ int main(void)
 	const char* msgf = "2";
 	
 	//////Initial music
-		auto p=Popen({"omxplayer","-o","local","dingdong.mp3"},output{PIPE},input{PIPE});
-		auto q=Popen({"omxplayer","-o","local","dingdong.mp3"},output{PIPE},input{PIPE});
+	auto p=Popen({"omxplayer","-o","local","dingdong.mp3"},output{PIPE},input{PIPE});
+	auto q=Popen({"omxplayer","-o","local","dingdong.mp3"},output{PIPE},input{PIPE});
 	
-	while(1)
+	//dis1 = disMeasure(Trig1,Echo1);
+	//cout << "distance1 = " << dis1 << " cm." << endl;
+	//dis2 = disMeasure(Trig2,Echo2);
+	//cout << "distance2 = " << dis2 << " cm." << endl;
+	dis3 = disMeasure(Trig3,Echo3);
+	cout << "distance3 = " << dis3 << " cm." << endl;
+	dis4 = disMeasure(Trig4,Echo4);
+	cout << "distance4 = " << dis4 << " cm." << endl;
+	
+	int start =0;
+	
+	if(dis3>=11 && dis3<13)   //off
 	{
-		/*dis1 = disMeasure(Trig1,Echo1);
-		cout << "distance1 = " << dis1 << " cm." << endl;
-		dis2 = disMeasure(Trig2,Echo2);
-		cout << "distance2 = " << dis2 << " cm." << endl;
-		dis3 = disMeasure(Trig3,Echo3);
-		cout << "distance3 = " << dis3 << " cm." << endl;
-		dis4 = disMeasure(Trig4,Echo4);
-		cout << "distance4 = " << dis4 << " cm." << endl;*/
-		
+		start =0;
+	}
+	else if(dis4>=11 && dis4<13)  //on
+	{
+		start =1;
+	}
+	
+	while(start)
+	{
 		/////////////////////////////////////////////////////////////////////////////////sound1
 		if(p.poll()==0 && sub1==0)
 		{
@@ -418,6 +429,11 @@ int main(void)
 		perror("error");
 		exit(0);
 		}
+		}
+		
+		if(dis3>=11 && dis3<13)   //off
+		{
+			start =0;
 		}
 		delay(1000);
 	}

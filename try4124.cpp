@@ -154,22 +154,22 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis3>=5 && dis3<10)
+					if(dis3>=3 && dis3<5)
 					{
 						//const char* msg = "1";
 						p.send(msgs, strlen(msgs));
 					}
-					else if(dis3>=10 && dis3<15)
+					else if(dis3>=5 && dis3<7)
 					{
 						//const char* msg = "2";
 						p.send(msgf, strlen(msgf));
 					}
-					else if(dis3>=15 && dis3<20)
+					else if(dis3>=7 && dis3<9)
 					{
 						//const char* msg = "-";
 						p.send(msgl, strlen(msgl));
 					}
-					else if(dis3>=20 && dis3<25)
+					else if(dis3>=9 && dis3<11)
 					{
 						//const char* msg = "+";
 						p.send(msgh, strlen(msgh));
@@ -198,22 +198,22 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis3>=5 && dis3<10)
+					if(dis3>=3 && dis3<5)
 					{
 						//const char* msg = "1";
 						p.send(msgs, strlen(msgs));
 					}
-					else if(dis3>=10 && dis3<15)
+					else if(dis3>=5 && dis3<7)
 					{
 						//const char* msg = "2";
 						p.send(msgf, strlen(msgf));
 					}
-					else if(dis3>=15 && dis3<20)
+					else if(dis3>=7 && dis3<9)
 					{
 						//const char* msg = "-";
 						p.send(msgl, strlen(msgl));
 					}
-					else if(dis3>=20 && dis3<25)
+					else if(dis3>=9 && dis3<11)
 					{
 						//const char* msg = "+";
 						p.send(msgh, strlen(msgh));
@@ -243,22 +243,22 @@ int main(void)
 						std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis3>=5 && dis3<10)
+					if(dis3>=3 && dis3<5)
 					{
 						//const char* msg = "1";
 						p.send(msgs, strlen(msgs));
 					}
-					else if(dis3>=10 && dis3<15)
+					else if(dis3>=5 && dis3<7)
 					{
 						//const char* msg = "2";
 						p.send(msgf, strlen(msgf));
 					}
-					else if(dis3>=15 && dis3<20)
+					else if(dis3>=7 && dis3<9)
 					{
 						//const char* msg = "-";
 						p.send(msgl, strlen(msgl));
 					}
-					else if(dis3>=20 && dis3<25)
+					else if(dis3>=9 && dis3<11)
 					{
 						//const char* msg = "+";
 						p.send(msgh, strlen(msgh));
@@ -305,22 +305,22 @@ int main(void)
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis4>=5 && dis4<10)
+					if(dis4>=3 && dis4<5)
 					{
 						//const char* msg = "1";
 						q.send(msgs, strlen(msgs));
 					}
-					else if(dis4>=10 && dis4<15)
+					else if(dis4>=5 && dis4<7)
 					{
 						//const char* msg = "2";
 						q.send(msgf, strlen(msgf));
 					}
-					else if(dis4>=15 && dis4<20)
+					else if(dis4>=7 && dis4<9)
 					{
 						//const char* msg = "-";
 						q.send(msgl, strlen(msgl));
 					}
-					else if(dis4>=20 && dis4<25)
+					else if(dis4>=9 && dis4<11)
 					{
 						//const char* msg = "+";
 						q.send(msgh, strlen(msgh));
@@ -349,22 +349,22 @@ int main(void)
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis4>=5 && dis4<10)
+					if(dis4>=3 && dis4<5)
 					{
 						//const char* msg = "1";
 						q.send(msgs, strlen(msgs));
 					}
-					else if(dis4>=10 && dis4<15)
+					else if(dis4>=5 && dis4<7)
 					{
 						//const char* msg = "2";
 						q.send(msgf, strlen(msgf));
 					}
-					else if(dis4>=15 && dis4<20)
+					else if(dis4>=7 && dis4<9)
 					{
 						//const char* msg = "-";
 						q.send(msgl, strlen(msgl));
 					}
-					else if(dis4>=20 && dis4<25)
+					else if(dis4>=9 && dis4<11)
 					{
 						//const char* msg = "+";
 						q.send(msgh, strlen(msgh));
@@ -393,22 +393,22 @@ int main(void)
 						//std::cout << res.first.buf.data() << std::endl;
 						flag =0;
 					}
-					if(dis4>=5 && dis4<10)
+					if(dis4>=3 && dis4<5)
 					{
 						//const char* msg = "1";
 						q.send(msgs, strlen(msgs));
 					}
-					else if(dis4>=10 && dis4<15)
+					else if(dis4>=5 && dis4<7)
 					{
 						//const char* msg = "2";
 						q.send(msgf, strlen(msgf));
 					}
-					else if(dis4>=15 && dis4<20)
+					else if(dis4>=7 && dis4<9)
 					{
 						//const char* msg = "-";
 						q.send(msgl, strlen(msgl));
 					}
-					else if(dis4>=20 && dis4<25)
+					else if(dis4>=9 && dis4<11)
 					{
 						//const char* msg = "+";
 						q.send(msgh, strlen(msgh));

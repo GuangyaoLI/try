@@ -155,9 +155,15 @@ int main(void)
 								dis3 = disMeasure(Trig3,Echo3);
 								cout << "distance3 = " << dis3 << " cm." << endl;
 					
-								if((dis1>=15 && dis1<35)||(dis3>=11 && dis3<13))       // turn off music
+								if(dis1>=15 && dis1<35)       // turn off music
 								{
 									p.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									p.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 					
@@ -193,9 +199,15 @@ int main(void)
 								dis3 = disMeasure(Trig3,Echo3);
 								cout << "distance3 = " << dis3 << " cm." << endl;
 					
-								if((dis1>=5 && dis1<15)||(dis1>=25 && dis1<35)||(dis3>=11 && dis3<13))
+								if((dis1>=5 && dis1<15)||(dis1>=25 && dis1<35))
 								{
 									p.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									p.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 								if(dis3>=3 && dis3<5)
@@ -230,9 +242,15 @@ int main(void)
 								dis3 = disMeasure(Trig3,Echo3);
 								cout << "distance3 = " << dis3 << " cm." << endl;
 					
-								if((dis1>=5 && dis1<25)||(dis3>=11 && dis3<13))
+								if(dis1>=5 && dis1<25)
 								{
 									p.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									p.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 								if(dis3>=3 && dis3<5)
@@ -289,9 +307,15 @@ int main(void)
 								dis4 = disMeasure(Trig4,Echo4);
 								cout << "distance4 = " << dis4 << " cm." << endl;
 								
-								if((dis2>=15 && dis2<35)||(dis3>=11 && dis3<13))
+								if(dis2>=15 && dis2<35)
 								{
 									q.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									q.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 								if(dis4>=3 && dis4<5)
@@ -328,9 +352,15 @@ int main(void)
 								dis4 = disMeasure(Trig4,Echo4);
 								cout << "distance4 = " << dis4 << " cm." << endl;
 					
-								if((dis2>=5 && dis2<15)||(dis2>=25 && dis2<35)||(dis3>=11 && dis3<13))
+								if((dis2>=5 && dis2<15)||(dis2>=25 && dis2<35))
 								{
 									q.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									q.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 								if(dis4>=3 && dis4<5)
@@ -367,9 +397,15 @@ int main(void)
 								dis4 = disMeasure(Trig4,Echo4);
 								cout << "distance4 = " << dis4 << " cm." << endl;
 					
-								if((dis2>=5 && dis2<25)||(dis3>=11 && dis3<13))
+								if(dis2>=5 && dis2<25)
 								{
 									q.send(msgq, strlen(msgq));
+									flag =0;
+								}
+								if(dis3>=11 && dis3<13)
+								{
+									q.send(msgq, strlen(msgq));
+									kill(pid,9);
 									flag =0;
 								}
 								if(dis4>=3 && dis4<5)
@@ -401,6 +437,7 @@ int main(void)
 			if(dis3>=11 && dis3<13)   //off
 			{	
 				start =0;
+				kill(pid,9);
 			}
 			delay(1000);
 		}
